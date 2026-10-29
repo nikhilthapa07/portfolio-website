@@ -22,7 +22,7 @@ export default function Header() {
             href={profile.resume}
             download
           >
-            Résumé
+            Resume
           </a>
           <a className="btn btn-butter" href="#contact">
             Say hi

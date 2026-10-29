@@ -4,8 +4,18 @@ export const profile = {
   lastName: "Thapa",
   role: "Full-Stack Developer",
   email: "nikhilthapa.ts@gmail.com",
-  phone: "+971 569405164",
-  phoneHref: "tel:+971569405164",
+  phones: [
+    {
+      label: "Dubai",
+      value: "+971 569405164",
+      href: "tel:+971569405164",
+    },
+    {
+      label: "Nepal",
+      value: "+977 9806724701",
+      href: "tel:+9779806724701",
+    },
+  ],
   location: "Dubai, UAE",
   website: "https://nikhilthapa.vercel.app",
   websiteLabel: "nikhilthapa.vercel.app",
@@ -22,12 +32,21 @@ export const mailto = (subject: string) =>
   `mailto:${profile.email}?subject=${encodeURIComponent(subject)}`;
 
 export type ProjectTheme = "grape" | "blue" | "butter" | "peri";
-export type PreviewVariant = "magnite" | "nismo" | "patrol" | "rag";
 
 export type ProjectLink = {
   label: string;
   href: string;
   variant: "solid" | "line";
+};
+
+export type ProjectImage = {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  fit?: "cover" | "contain";
+  position?: string;
+  credit?: { label: string; href: string };
 };
 
 export type Project = {
@@ -38,8 +57,8 @@ export type Project = {
   learn: string;
   tools: string[];
   theme: ProjectTheme;
-  preview: PreviewVariant;
-  previewAlt: string;
+  site: string;
+  image: ProjectImage;
   links: ProjectLink[];
 };
 
@@ -53,9 +72,13 @@ export const projects: Project[] = [
       "Shipped a market-specific launch page with performance tuning, responsive layouts, and Core Web Vitals in mind.",
     tools: ["NuxtJS", "Vue 3", "TypeScript", "Tailwind", "GSAP"],
     theme: "grape",
-    preview: "magnite",
-    previewAlt:
-      "Stylized Nissan Magnite landing page with a warm desert gradient and vehicle silhouette",
+    site: "en.allnewmagnite.nissan-saudiarabia.com",
+    image: {
+      src: "/projects/nissan-magnite.webp",
+      width: 1600,
+      height: 900,
+      alt: "Nissan Magnite parked on a sunlit street with a person leaning against it",
+    },
     links: [
       {
         label: "Visit live site",
@@ -78,9 +101,13 @@ export const projects: Project[] = [
       "Balanced heavy visual treatment with fast delivery, keeping the launch page responsive and sharp under pressure.",
     tools: ["NuxtJS", "Vue 3", "TypeScript", "Tailwind", "GSAP"],
     theme: "blue",
-    preview: "nismo",
-    previewAlt:
-      "Stylized Nissan Patrol Nismo landing page with a black and red performance theme",
+    site: "en.patrolnismo.nissan-dubai.com",
+    image: {
+      src: "/projects/nissan-patrol-nismo.webp",
+      width: 1600,
+      height: 900,
+      alt: "Nissan Patrol Nismo front view under dramatic red lighting",
+    },
     links: [
       {
         label: "Visit live site",
@@ -103,9 +130,14 @@ export const projects: Project[] = [
       "Delivered a flagship vehicle experience with careful asset delivery through S3 and CloudFront for fast global loads.",
     tools: ["NuxtJS", "Vue 3", "TypeScript", "Tailwind", "AWS"],
     theme: "butter",
-    preview: "patrol",
-    previewAlt:
-      "Stylized Nissan Patrol landing page with a dusk desert gradient and vehicle silhouette",
+    site: "en.allnewpatrol.nissan-dubai.com",
+    image: {
+      src: "/projects/nissan-patrol.webp",
+      width: 1600,
+      height: 789,
+      alt: "White Nissan Patrol in a warm-lit showroom",
+      position: "65% center",
+    },
     links: [
       {
         label: "Visit live site",
@@ -135,9 +167,18 @@ export const projects: Project[] = [
       "Python",
     ],
     theme: "peri",
-    preview: "rag",
-    previewAlt:
-      "Stylized diagram of a retrieval-augmented generation pipeline with router, vector search, and LLM nodes",
+    site: "internal · rag-assistant",
+    image: {
+      src: "/projects/rag-diagram.svg",
+      width: 652,
+      height: 576,
+      fit: "contain",
+      alt: "Diagram of a retrieval-augmented generation pipeline: documents are embedded into a vector database, relevant context is retrieved for a user query, and an LLM generates the response",
+      credit: {
+        label: "Diagram: Turtlecrown / Wikimedia Commons · CC BY-SA 4.0",
+        href: "https://commons.wikimedia.org/wiki/File:RAG_diagram.svg",
+      },
+    },
     links: [
       {
         label: "Ask about it",
@@ -279,7 +320,7 @@ export const skillGroups: SkillGroup[] = [
   {
     label: "Languages",
     tone: "lang",
-    items: ["JavaScript", "TypeScript", "Python", "C", "Lua"],
+    items: ["JavaScript", "TypeScript", "Python", "Go", "Rust", "Java", "C", "Lua"],
   },
   {
     label: "Frontend",
@@ -322,11 +363,11 @@ export const socials = [
     value: profile.email,
     href: `mailto:${profile.email}`,
   },
-  {
-    label: "Phone",
-    value: profile.phone,
-    href: profile.phoneHref,
-  },
+  ...profile.phones.map((phone) => ({
+    label: `Phone · ${phone.label}`,
+    value: phone.value,
+    href: phone.href,
+  })),
   {
     label: "Website",
     value: profile.websiteLabel,

@@ -46,7 +46,7 @@ export default function ProjectCard({
         </div>
         <figure className="shot">
           <span className="tape" aria-hidden="true" />
-          <ProjectPreview variant={project.preview} label={project.previewAlt} />
+          <ProjectPreview image={project.image} site={project.site} />
         </figure>
       </div>
     </article>

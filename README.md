@@ -10,7 +10,7 @@ A single-page portfolio for Nikhil Thapa, a full-stack and generative AI develop
 - **Version-history timeline** — expandable roles and education.
 - **Draggable toolkit** — skill stickers you can drag around the board, with a “Tidy up” reset.
 - **Contact composer** — validates the form, then opens a prefilled `mailto:` (no backend), plus a copy-email fallback with toast feedback.
-- **Résumé download** — `public/Nikhil-Thapa-Resume.pdf`.
+- **Resume download** — `public/Nikhil-Thapa-Resume.pdf`.
 
 ## Stack
 
@@ -27,14 +27,19 @@ app/
   globals.css       design system, animations, responsive rules
 components/
   sections/         Header, Hero, About, Work, Journey, Toolkit, Contact
-  ProjectPreview.tsx   CSS/SVG project mockups
+  ProjectPreview.tsx   framed project image previews
   ProjectStack.tsx     sticky-card height equalisation
   StickerBoard.tsx     draggable toolkit stickers
   ContactThread.tsx    mailto composer + validation
   PixelBackground.tsx  animated canvas backdrop
 data/portfolio.ts   all resume content and project data
-public/             résumé PDF
+public/             resume PDF and project imagery
 ```
+
+## Image credits
+
+- Nissan Magnite, Patrol Nismo, and Patrol hero imagery comes from the live project sites.
+- The RAG diagram is by [Turtlecrown](https://commons.wikimedia.org/wiki/User:Turtlecrown) via Wikimedia Commons, licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
 ## Getting started
 
@@ -56,7 +61,7 @@ pnpm lint    # eslint
 
 ## Editing content
 
-Most copy lives in `data/portfolio.ts` — profile, projects, experience, skills, and social links. Update that file rather than the components to change content. The résumé PDF lives at `public/Nikhil-Thapa-Resume.pdf`; replace it to update the download.
+Most copy lives in `data/portfolio.ts` — profile, projects, experience, skills, and social links. Update that file rather than the components to change content. The resume PDF lives at `public/Nikhil-Thapa-Resume.pdf`; replace it to update the download.
 
 ## Deploy
 

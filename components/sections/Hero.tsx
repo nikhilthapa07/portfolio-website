@@ -62,7 +62,7 @@ export default function Hero() {
             See what I&apos;ve built
           </a>
           <a className="btn btn-ghost" href={profile.resume} download>
-            Download résumé
+            Download resume
           </a>
         </div>
       </div>
