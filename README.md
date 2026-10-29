@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nikhil Thapa — Portfolio
 
-## Getting Started
+A single-page portfolio for Nikhil Thapa, a full-stack and generative AI developer based in Dubai. Built with Next.js 16, React 19, and hand-written CSS — no animation libraries.
 
-First, run the development server:
+## What's inside
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Pixel-art animated backdrop** — a canvas dot grid with random pixel blinks and falling pixel glyphs (`components/PixelBackground.tsx`), disabled under `prefers-reduced-motion`.
+- **Hero** — animated selection frame, handwritten notes, and floating pixel cursors.
+- **Sticky project stack** — four projects (three live Nissan launches plus an enterprise RAG platform) that stack as you scroll, each with a CSS/SVG mockup instead of a screenshot.
+- **Version-history timeline** — expandable roles and education.
+- **Draggable toolkit** — skill stickers you can drag around the board, with a “Tidy up” reset.
+- **Contact composer** — validates the form, then opens a prefilled `mailto:` (no backend), plus a copy-email fallback with toast feedback.
+- **Résumé download** — `public/Nikhil-Thapa-Resume.pdf`.
+
+## Stack
+
+- Next.js 16 (App Router)
+- React 19 + TypeScript
+- Plain CSS in `app/globals.css` with `next/font` (Instrument Sans, Pixelify Sans, Shantell Sans)
+
+## Project structure
+
+```
+app/
+  layout.tsx        fonts, metadata, viewport
+  page.tsx          section composition
+  globals.css       design system, animations, responsive rules
+components/
+  sections/         Header, Hero, About, Work, Journey, Toolkit, Contact
+  ProjectPreview.tsx   CSS/SVG project mockups
+  ProjectStack.tsx     sticky-card height equalisation
+  StickerBoard.tsx     draggable toolkit stickers
+  ContactThread.tsx    mailto composer + validation
+  PixelBackground.tsx  animated canvas backdrop
+data/portfolio.ts   all resume content and project data
+public/             résumé PDF
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm dev     # start the dev server
+pnpm build   # production build
+pnpm start   # serve the production build
+pnpm lint    # eslint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Editing content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Most copy lives in `data/portfolio.ts` — profile, projects, experience, skills, and social links. Update that file rather than the components to change content. The résumé PDF lives at `public/Nikhil-Thapa-Resume.pdf`; replace it to update the download.
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deploy on [Vercel](https://vercel.com/new) or any host that supports Next.js. Set the production domain in `metadataBase` inside `app/layout.tsx` if it differs from `https://nikhilthapa.vercel.app`.
